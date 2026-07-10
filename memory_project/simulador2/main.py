@@ -1,18 +1,15 @@
 
 from paging_manager import PagingManager
+from paging_executor import PagingExecutor
 
 
 manager = PagingManager(
     page_size=1024,
-    virtual_memory_size=1024 * 1024,
-    physical_memory_size=1024 * 1024
+    virtual_memory_size=8192,
+    physical_memory_size=4096
 )
 
-manager.map_page(0, 3)
-manager.map_page(1, 0)
-manager.map_page(2, 5)
-manager.map_page(3, 1)
-
-manager.translate_address(2500)
-
-
+PagingExecutor.execute_file(
+    manager,
+    "input_paging.txt"
+)

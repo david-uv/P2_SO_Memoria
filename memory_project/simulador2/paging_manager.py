@@ -77,7 +77,7 @@ class PagingManager:
 
         return physical_address
     
-    
+
     def print_page_table(self):
         print("\nPage Table")
         print("-------------------------")
@@ -92,6 +92,31 @@ class PagingManager:
                 f" -> "
                 f"Frame {frame_number}"
             )
-    
+
+    def print_frames(self):
+
+        print("\nPhysical Frames")
+        print("-------------------------")
+
+        total_frames = (
+            self.physical_memory_size //
+            self.page_size
+        )
+
+        used_frames = set(
+            self.page_table.values()
+        )
+
+        for frame in range(total_frames):
+
+            if frame in used_frames:
+                print(
+                    f"Frame {frame}: OCCUPIED"
+                )
+            else:
+                print(
+                    f"Frame {frame}: FREE"
+                )
+        
 
 
