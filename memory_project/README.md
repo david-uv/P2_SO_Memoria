@@ -1,21 +1,21 @@
-# Simulador 1 - Administración de Memoria Continua
+# Simulator 1 - Memory Allocation
 
-Construcción:
+Building:
 
 docker build -f Dockerfile.sim1 -t simulador1 .
 
-Ejecución:
+Execution:
 
 docker run --rm simulador1
 
 
-# Simulador 2 - Traducción de Direcciones Virtuales
+# Simulator 2 - Virtual Address Translation
 
-Construcción:
+Building:
 
 docker build -f Dockerfile.sim2 -t simulador2 .
 
-Ejecución:
+Execution:
 
 docker run --rm simulador2
 
