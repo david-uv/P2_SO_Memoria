@@ -150,4 +150,55 @@ class MemoryManager:
 
 
     def print_statistics(self):
-        pass
+        
+        used_memory = sum(
+        block.size
+        for block in self.blocks
+        if not block.is_free
+        )
+
+        free_memory = self.memory_size - used_memory
+
+        allocated_blocks = sum(
+            1
+            for block in self.blocks
+            if not block.is_free
+        )
+
+        free_blocks = sum(
+            1
+            for block in self.blocks
+            if block.is_free
+        )
+
+        utilization = (
+            used_memory / self.memory_size
+        ) * 100
+
+        free_blocks_sizes = [
+            block.size
+            for block in self.blocks
+            if block.is_free
+        ]
+
+        largest_free_block = (
+            max(free_blocks_sizes)
+            if free_blocks_sizes
+            else 0
+        )
+
+        external_fragmentation = (
+            free_memory - largest_free_block
+        )
+
+        print("\nMemory Statistics")
+        print("-------------------------")
+        print(f"Total memory: {self.memory_size} MB")
+        print(f"Used memory: {used_memory} MB")
+        print(f"Free memory: {free_memory} MB")
+        print(f"Allocated blocks: {allocated_blocks}")
+        print(f"Free blocks: {free_blocks}")
+        print(f"Memory utilization: {utilization:.2f}%")
+        print(f"Largest free block: {largest_free_block} MB")
+        print(f"External fragmentation: {external_fragmentation} MB")
+        print(f"Internal fragmentation: 0 MB")

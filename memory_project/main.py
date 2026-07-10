@@ -1,23 +1,28 @@
 from memory_manager import MemoryManager
-from process import Process
+from input_executor import InputExecutor
 
 
-manager = MemoryManager(
-    memory_size=1024,
-    algorithm="FIRST_FIT"
-)
+algorithms = [
+    "FIRST_FIT",
+    "BEST_FIT",
+    "WORST_FIT"
+]
 
-p1 = Process("P1", 100)
-p2 = Process("P2", 200)
-p3 = Process("P3", 150)
+for algorithm in algorithms:
 
-manager.allocate(p1)
-manager.allocate(p2)
-manager.allocate(p3)
-manager.print_memory()
+    print("\n")
+    print("=" * 50)
+    print(f"Testing {algorithm}")
+    print("=" * 50)
 
-manager.free("P2")
-manager.print_memory()
+    manager = MemoryManager(
+        memory_size=1024,
+        algorithm=algorithm
+    )
 
-manager.free("P3")
-manager.print_memory()
+    InputExecutor.execute_file(
+        manager,
+        "input_memory.txt"
+    )
+
+    manager.print_statistics()
