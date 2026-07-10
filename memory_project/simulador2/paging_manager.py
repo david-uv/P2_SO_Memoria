@@ -79,6 +79,44 @@ class PagingManager:
     
 
     def print_page_table(self):
+
+        total_virtual_pages = (
+            self.virtual_memory_size //
+            self.page_size
+        )
+
+        total_frames = (
+            self.physical_memory_size //
+            self.page_size
+        )
+
+        print("\nPaging Configuration")
+        print("-------------------------")
+        print(
+            f"Page size: "
+            f"{self.page_size} bytes"
+        )
+
+        print(
+            f"Virtual memory size: "
+            f"{self.virtual_memory_size} bytes"
+        )
+
+        print(
+            f"Physical memory size: "
+            f"{self.physical_memory_size} bytes"
+        )
+
+        print(
+            f"Virtual pages: "
+            f"{total_virtual_pages}"
+        )
+
+        print(
+            f"Physical frames: "
+            f"{total_frames}"
+        )
+
         print("\nPage Table")
         print("-------------------------")
 
@@ -117,6 +155,6 @@ class PagingManager:
                 print(
                     f"Frame {frame}: FREE"
                 )
-        
+
 
 
